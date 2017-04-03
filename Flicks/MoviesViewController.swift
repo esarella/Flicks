@@ -29,13 +29,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         searchBar.delegate = self
         
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.95, green:0.71, blue:0.21, alpha:1.0)
+        
         let refreshControl = UIRefreshControl()
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_ :)), for: UIControlEvents.valueChanged)
         
         tableView.insertSubview(refreshControl, at: 0)
         
-        self.tableView.reloadData()
+        //        self.tableView.reloadData()
         
     }
     
@@ -107,7 +110,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                                 // do something for the failure condition of the large image request
                                 // possibly setting the ImageView's image to a default image
                                 
-                                    self.errorView.isHidden = false
+                                self.errorView.isHidden = false
                                 
                         })
                     })
@@ -117,7 +120,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     // do something for the failure condition of the large image request
                     // possibly setting the ImageView's image to a default image
                     
-                        self.errorView.isHidden = false
+                    self.errorView.isHidden = false
                     
             })
         }
@@ -135,14 +138,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath)
-        cell?.contentView.backgroundColor = UIColor.orange
-        cell?.backgroundColor = UIColor.lightGray
+        //        cell?.contentView.backgroundColor = UIColor.orange
+        //        cell?.backgroundColor = UIColor.lightGray
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath)
-        cell?.contentView.backgroundColor = UIColor.white
-        cell?.backgroundColor = UIColor.white
+        //        cell?.contentView.backgroundColor = UIColor.white
+        //        cell?.backgroundColor = UIColor.white
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
