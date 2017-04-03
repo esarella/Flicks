@@ -32,9 +32,21 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+
+
 <img src='http://i.imgur.com/NM9MUqI.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Video Walkthrough
+
+
 <img src='http://i.imgur.com/quI92xz.gif' title='Error Message' width='' alt='Video Walkthrough' />
+
+Error Message
+
+
 <img src='http://i.imgur.com/x0DxcaC.gif' title='Slow Network' width='' alt='Video Walkthrough' />
+
+Slow Network
 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
