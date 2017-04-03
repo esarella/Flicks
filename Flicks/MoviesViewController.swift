@@ -31,6 +31,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.blackTranslucent
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.95, green:0.71, blue:0.21, alpha:1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         
         let refreshControl = UIRefreshControl()
         
@@ -137,15 +138,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath as IndexPath)
-        //        cell?.contentView.backgroundColor = UIColor.orange
-        //        cell?.backgroundColor = UIColor.lightGray
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath as IndexPath)
-        //        cell?.contentView.backgroundColor = UIColor.white
-        //        cell?.backgroundColor = UIColor.white
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+                let movie = filteredData![indexPath.row]
+        
+        if let title = movie["title"] as? String {
+            cell.titleLabel.text = title
+            cell.titleLabel.textColor = UIColor.black
+        }
+        
+        if let overview = movie["overview"] as? String {
+            cell.overviewLabel.text = overview
+            cell.overviewLabel.textColor = UIColor.black
+        }
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let posterImageUrl = URL(string: baseUrl + posterPath)
+            cell.posterView.setImageWith(posterImageUrl!)
+        }
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = backgroundView
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
